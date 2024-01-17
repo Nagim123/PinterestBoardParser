@@ -170,3 +170,8 @@ class PinterestBoard():
             self.__pin_list = eval(board_dict["pin_list"])
         
         self.__logger.info("Board successfully loaded from a file!")
+    
+    def __eq__(self, __value: object) -> bool:
+        if isinstance(__value, PinterestBoard):
+            return self.__board_name == __value.__board_name and self.__user_name == __value.__user_name
+        return False
