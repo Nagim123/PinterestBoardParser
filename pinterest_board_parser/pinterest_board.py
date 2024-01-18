@@ -6,6 +6,7 @@ import urllib.parse
 from bs4 import BeautifulSoup
 from .pinterest_pin import PinterestPin
 from .pinterest_parse_logger import get_parsing_logger
+from .pinterest_board_does_not_exist_exception import PinterestBoardDoesNotExistException
 
 class PinterestBoard():
     """
@@ -128,7 +129,7 @@ class PinterestBoard():
         pws_json_data = json.loads(soup.find(id="__PWS_DATA__").text)
 
         if not "BoardFeedResource" in pws_json_data["props"]["initialReduxState"]["resources"]:
-            raise Exception(f"Board with name '{self.__board_name}' and owner name '{self.__user_name}' was not found.")
+            raise PinterestBoardDoesNotExistException(self.__board_name, self.__user_name)
 
         self.__logger.info("Extracting board id from parsed data")
         board_data = list(pws_json_data["props"]["initialReduxState"]["resources"]["BoardFeedResource"].keys())[0]
