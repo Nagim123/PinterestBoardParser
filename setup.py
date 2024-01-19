@@ -10,5 +10,5 @@ setup(
     packages=find_packages(),
 
     py_modules=['pinterest_board_parser'],
-    install_requires=["requests"]
+    install_requires=["requests", "beautifulsoup4"]
 )
