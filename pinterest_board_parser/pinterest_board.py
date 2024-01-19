@@ -82,7 +82,7 @@ class PinterestBoard():
                     "context": {}
                 }
             }
-            response = requests.get(f"{PINTEREST_BOARD_RESOURCES_URL}?data={urllib.parse.quote(json.dumps(OPTIONS).encode("UTF-8"), safe='')}")
+            response = requests.get(f"{PINTEREST_BOARD_RESOURCES_URL}?data={urllib.parse.quote(json.dumps(OPTIONS).encode('UTF-8'), safe='')}")
             json_data = response.json()
             pin_data = json_data["resource_response"]["data"]
             for pin in pin_data:
