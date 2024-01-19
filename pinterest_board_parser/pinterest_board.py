@@ -4,6 +4,9 @@ import os
 import re
 import urllib.parse
 from bs4 import BeautifulSoup
+
+from typing import List
+
 from .pinterest_pin import PinterestPin
 from .pinterest_parse_logger import get_parsing_logger
 from .pinterest_board_does_not_exist_exception import PinterestBoardDoesNotExistException
@@ -31,7 +34,7 @@ class PinterestBoard():
 
         self.__cache_file_path = cache_file_path
         
-        self.__pin_list: list[PinterestPin] = []
+        self.__pin_list: List[PinterestPin] = []
 
         
         if cache_file_path is not None:
@@ -41,12 +44,12 @@ class PinterestBoard():
                 self.__logger.info("Loading cached board data from a file")
                 self.__load_from_file()
 
-    def get_pins(self) -> list[PinterestPin]:
+    def get_pins(self) -> List[PinterestPin]:
         """
         Get all pins from a board.
 
         Returns:
-            list[PinterestPin]: List of pins from a board.
+            List[PinterestPin]: List of pins from a board.
         """
 
         self.__parse_and_cache_new_pins()
